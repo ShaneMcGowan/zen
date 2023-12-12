@@ -1,9 +1,6 @@
 # Zen - An absolutely scuffed JavaScript framework for the common man
 This is a learning exercise for myself and
 
-## Zenstagram
-An instagram clone, the premier sample application for the Zen framework
-
 
 ```TypeScript
 export class Route {
@@ -33,3 +30,6 @@ export class Route {
   onExitAfterModel(){}
 }
 ```
+
+### Zenstagram
+An instagram clone, the premier sample application for the Zen framework
