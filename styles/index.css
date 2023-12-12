@@ -1,0 +1,13 @@
+.navbar {
+  display: flex;
+  padding: 1rem;
+  border-bottom: 1px solid black;
+}
+
+.navbar a {
+  margin-right: 1rem;
+}
+
+.navbar a:first-child {
+  margin-right: auto;
+}
