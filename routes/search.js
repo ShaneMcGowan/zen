@@ -1,4 +1,3 @@
-import { Router } from '/core/router.js';
 import { Route } from '/core/route.js';
 
 export class SearchRoute extends Route {
@@ -23,7 +22,7 @@ export class SearchRoute extends Route {
     let value = document.querySelector(`#${SELECTORS.input}`).value;
     console.log(this);
     console.log(this.rootUrl);
-    Router.navigate(this.rootUrl, value);
+    window.zen.router.navigate(this.rootUrl, value); // FIXME:
     alert(`Search for ${this.rootUrl}`);
   }
   

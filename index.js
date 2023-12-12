@@ -7,6 +7,11 @@ import { Router } from '/core/router.js';
     window.location = '#/';
   }
 
-  Router.navigateToUrl();
+  // TODO: shouldn't polute global namespace like this but it will do for now
+  window.zen = {
+    router: new Router(ROUTES) 
+  }
+
+  window.zen.router.navigateToUrl();
 })();
 
