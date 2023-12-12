@@ -1,10 +1,12 @@
 export class IndexRoute {
 
+  /*
   onEnterBeforeModel(){}
 
   onEnterModel(){}
 
   onEnterAfterModel(){}
+  */
 
   template(){
     let template = document.createElement(`${IndexRoute.name}Template`);
@@ -16,9 +18,11 @@ export class IndexRoute {
 
   actions(template){}
 
+  /*
   onExitBeforeModel(){}
 
   onExitModel(){}
 
   onExitAfterModel(){}
+  */
 }

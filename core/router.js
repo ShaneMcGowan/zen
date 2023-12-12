@@ -64,9 +64,9 @@ export class Router {
 
       // render template
       if(parent === undefined){
-        this.renderTemplate(route, document.body);
+        this.runRouteLifeCycle(route, document.body);
       } else {
-        this.renderTemplate(route, document.getElementById(`outlet-${parent.route.name}`));
+        this.runRouteLifeCycle(route, document.getElementById(`outlet-${parent.route.name}`));
       }
 
       // set parent for next iteration
@@ -81,14 +81,38 @@ export class Router {
   }
 
   // render template into outlet
-  renderTemplate = (route, outlet) => {
+  runRouteLifeCycle = (route, outlet) => {
     
+    ///////////////////////////
+    // initialize route class
+    ///////////////////////////
+
     // create route class and set rootUrl (used for navigation)
     let routeClass = new route.route(route.urlFragment);
 
-    // get model if defined
+    ///////////////////////////
+    // run onEnterBeforeModel
+    ///////////////////////////
+    if(routeClass.onEnterBeforeModel){
+      throw new Error('onEnterBeforeModel not implemented');
+    }
+
+    ///////////////////////////
+    // run onEnterModel
+    ///////////////////////////
     let model = routeClass.onEnterModel ? routeClass.onEnterModel(route.urlFragment) : undefined;
 
+    ///////////////////////////
+    // run onEnterAfterModel
+    ///////////////////////////
+    if(routeClass.onEnterAfterModel){
+      throw new Error('onEnterAfterModel not implemented');
+    }
+
+    ///////////////////////////
+    // run template
+    ///////////////////////////
+    
     // clear outlet
     while (outlet.lastElementChild) {
       outlet.removeChild(outlet.lastElementChild);
@@ -98,9 +122,32 @@ export class Router {
     let template = routeClass.template(model);
     outlet.appendChild(template);
 
-    // attach actions if defined
+    ///////////////////////////
+    // run actions
+    ///////////////////////////
     if(routeClass.actions){
       routeClass.actions(template);
+    }
+
+    ///////////////////////////
+    // run onExitBeforeModel
+    ///////////////////////////
+    if(routeClass.onExitBeforeModel){
+      throw new Error('onExitBeforeModel not implemented');
+    }
+
+    ///////////////////////////
+    // run onExitModel
+    ///////////////////////////
+    if(routeClass.onExitModel){
+      throw new Error('onExitModel not implemented');
+    }
+
+    ///////////////////////////
+    // run onExitAfterModel
+    ///////////////////////////
+    if(routeClass.onExitAfterModel){
+      throw new Error('onExitAfterModel not implemented');
     }
   }
 
@@ -118,4 +165,6 @@ export class Router {
     // render new routes
     this.traverseRoutesFromUrl();
   }
+
+
 }
