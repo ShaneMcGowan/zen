@@ -103,8 +103,11 @@ export class Router {
     let model = routeClass.onEnterModel ? routeClass.onEnterModel() : undefined;
     if(model){
       // resolve async values
-      model = await Promise.all(Object.values(model));
-      console.log(model);
+      let resolvedModel = await Promise.all(Object.values(model));
+      // TODO: review this as it seems dodgy
+      Object.keys(model).forEach((key, index) => {
+        model[key] = resolvedModel[index];
+      });
     }
 
     ///////////////////////////
