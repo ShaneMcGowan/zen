@@ -2,7 +2,7 @@ import { Route } from '/core/route.js';
 
 export class AccountRoute extends Route {
 
-  template(){
+  template(model){
     let template = document.createElement(`${AccountRoute.name}Template`);
     template.innerHTML = `
       <nav class="bg-white p-3 border-b">

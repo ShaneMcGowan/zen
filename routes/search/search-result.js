@@ -2,7 +2,12 @@ export class SearchResultRoute {
 
   onEnterModel(urlFragment){
     return {
-      query: `${urlFragment}`
+      syncValue: 'sync test',
+      asyncValue: new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('async test');
+        }, 1000);
+      })
     }
   }
 

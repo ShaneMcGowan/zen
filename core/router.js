@@ -20,7 +20,7 @@ export class Router {
 
   // TODO: should this be recursive rather than a loop?
   // TODO: potentially only rerender sub tree
-  traverseRoutesFromUrl = () => {
+  traverseRoutesFromUrl = async () => {
     let routes = this.getRouteArray();
     console.log(`routes: ${routes}`);
 
@@ -64,9 +64,9 @@ export class Router {
 
       // render template
       if(parent === undefined){
-        this.runRouteLifeCycle(route, document.body);
+        await this.runRouteLifeCycle(route, document.body);
       } else {
-        this.runRouteLifeCycle(route, document.getElementById(`outlet-${parent.route.name}`));
+        await this.runRouteLifeCycle(route, document.getElementById(`outlet-${parent.route.name}`));
       }
 
       // set parent for next iteration
@@ -81,7 +81,7 @@ export class Router {
   }
 
   // render template into outlet
-  runRouteLifeCycle = (route, outlet) => {
+  runRouteLifeCycle = async (route, outlet) => {
     
     ///////////////////////////
     // initialize route class
@@ -100,7 +100,12 @@ export class Router {
     ///////////////////////////
     // run onEnterModel
     ///////////////////////////
-    let model = routeClass.onEnterModel ? routeClass.onEnterModel(route.urlFragment) : undefined;
+    let model = routeClass.onEnterModel ? routeClass.onEnterModel() : undefined;
+    if(model){
+      // resolve async values
+      model = await Promise.all(Object.values(model));
+      console.log(model);
+    }
 
     ///////////////////////////
     // run onEnterAfterModel

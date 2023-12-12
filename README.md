@@ -31,5 +31,54 @@ export class Route {
 }
 ```
 
+## Define your routes
+```TypeScript
+export const ROUTES = {
+  '#': {
+    route: IndexRoute,
+    children: {
+      '': {
+        route: HomeRoute
+      },
+      'search': {
+        route: SearchRoute
+      },
+      'account': {
+        route: AccountRoute,
+        children: {
+          'login': {
+            route: AccountLoginRoute,
+          },
+          'register': {
+            route: AccountRegisterRoute
+          },
+        }
+      }
+    }
+  }
+}
+```
+
+The above defines the following routes
+- `/#/`
+- `/#/search`
+- `/#/account`
+- `/#/account/login`
+- `/#/account/register`
+
+## Loading data in onEnterModel
+```TypeScript
+onEnterModel(urlFragment){
+  return {
+    syncValue: 'sync value',
+    asyncValue: new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('async value');
+      }, 1000);
+    })
+  }
+}
+```
+
 ### Zenstagram
 An instagram clone, the premier sample application for the Zen framework
