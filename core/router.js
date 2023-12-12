@@ -6,11 +6,10 @@ export class Router {
   }
 
   navigate = (rootUrl, urlFragment) => {
-    let _root = rootUrl ? `/${rootUrl}` : '/';
+    let _root = rootUrl ? `${rootUrl}` : '';
     let _fragment = urlFragment ? `/${urlFragment}` : '';
 
-    let url = `${_root}${_fragment}`;
-    window.location.hash = url;
+    window.location.hash = `/${_root}${_fragment}`;;
     
     this.traverseRoutesFromUrl();
   }
