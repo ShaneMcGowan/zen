@@ -12,6 +12,6 @@ import { Router } from '/core/router.js';
     router: new Router(ROUTES) 
   }
 
-  window.zen.router.navigateToUrl();
+  window.zen.router.navigate();
 })();
 

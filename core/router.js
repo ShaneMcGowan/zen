@@ -5,18 +5,11 @@ export class Router {
     this.ROUTES = routes;
   }
 
-  // TODO: should this be removed?
-  navigateToUrl = (urlFragment) => {
-    // default to empty string
+  navigate = (rootUrl, urlFragment) => {
+    let _root = rootUrl ? `/${rootUrl}` : '/';
     let _fragment = urlFragment ? `/${urlFragment}` : '';
 
-    window.location.hash += _fragment;
-    
-    this.traverseRoutesFromUrl();
-  }
-
-  navigate = (rootUrl, urlFragment) => {
-    let url = `${rootUrl}/${urlFragment}`;
+    let url = `${_root}${_fragment}`;
     window.location.hash = url;
     
     this.traverseRoutesFromUrl();
@@ -26,6 +19,7 @@ export class Router {
     return window.location.hash.split('/');
   }
 
+  // TODO: should this be recursive rather than a loop?
   traverseRoutesFromUrl = () => {
     let routes = this.getRouteArray();
     console.log(`routes: ${routes}`);
@@ -33,6 +27,7 @@ export class Router {
     let parent = undefined;
     let routeFragments 
     
+    // TODO: should this be recursive rather than a loop?
     for (let index = 0; index < routes.length; index++) {
     
       // get fragment
