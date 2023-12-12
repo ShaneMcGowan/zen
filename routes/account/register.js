@@ -1,7 +1,7 @@
-export class RegisterRoute {
+export class AccountRegisterRoute {
 
   template(){
-    let template = document.createElement(`${RegisterRoute.name}Template`);
+    let template = document.createElement(`${AccountRegisterRoute.name}Template`);
     template.innerHTML = `
       <label>Username</label>
       <input type="text" placeholder="username" />

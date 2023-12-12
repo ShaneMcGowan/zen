@@ -1,10 +1,11 @@
 import { IndexRoute } from './routes/index.js';
-import { LoginRoute } from './routes/login.js';
-import { RegisterRoute } from './routes/register.js';
+import { AccountLoginRoute } from './routes/account/login.js';
+import { AccountRegisterRoute } from './routes/account/register.js';
 import { UserRoute } from './routes/user.js';
 import { SearchRoute } from './routes/search.js';
 import { SearchResultRoute } from './routes/search/search-result.js'
 import { HomeRoute } from './routes/home.js';
+import { AccountRoute } from './routes/account.js';
 
 export const ROUTES = {
   '#': {
@@ -13,11 +14,16 @@ export const ROUTES = {
       '': {
         route: HomeRoute
       },
-      'login': {
-        route: LoginRoute,
-      },
-      'register': {
-        route: RegisterRoute
+      'account': {
+        route: AccountRoute,
+        children: {
+          'login': {
+            route: AccountLoginRoute,
+          },
+          'register': {
+            route: AccountRegisterRoute
+          },
+        }
       },
       'user': {
         route: UserRoute
@@ -33,3 +39,10 @@ export const ROUTES = {
     }
   }
 };
+
+/*
+'' - home
+'accounts/emailsignup/'
+'accounts/login/?source=auth_switcher'
+accounts/password/reset/
+*/

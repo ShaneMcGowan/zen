@@ -19,6 +19,7 @@ export class Router {
   }
 
   // TODO: should this be recursive rather than a loop?
+  // TODO: potentially only rerender sub tree
   traverseRoutesFromUrl = () => {
     let routes = this.getRouteArray();
     console.log(`routes: ${routes}`);
