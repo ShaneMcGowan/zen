@@ -3,7 +3,6 @@ import { Router } from '/core/router.js';
 
 (function() {
   // ensure hash routing
-  alert(window.location.hash); 
   if(!window.location.hash.startsWith('#/')) {
     window.location = '#/';
   }
