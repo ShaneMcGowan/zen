@@ -100,13 +100,13 @@ export class Router {
     ///////////////////////////
     // run onEnterModel
     ///////////////////////////
-    let model = routeClass.onEnterModel ? routeClass.onEnterModel() : undefined;
-    if(model){
+    let enterModel = routeClass.onEnterModel ? routeClass.onEnterModel() : undefined;
+    if(enterModel){
       // resolve async values
-      let resolvedModel = await Promise.all(Object.values(model));
+      let resolvedModel = await Promise.all(Object.values(enterModel));
       // TODO: review this as it seems dodgy
-      Object.keys(model).forEach((key, index) => {
-        model[key] = resolvedModel[index];
+      Object.keys(enterModel).forEach((key, index) => {
+        enterModel[key] = resolvedModel[index];
       });
     }
 
@@ -127,7 +127,7 @@ export class Router {
     }
 
     // render template into outlet
-    let template = routeClass.template(model);
+    let template = routeClass.template(enterModel);
     outlet.appendChild(template);
 
     ///////////////////////////
